@@ -7,7 +7,7 @@
     <!-- CSS only -->
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
-    <link href="/static/login.css" rel="stylesheet">
+    <link href="/login.css" rel="stylesheet">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 
         <div class="loginform">
             <h1 class=" font-weight-bolder display-4 text-center my-4">My Movie App</h1>
-            <form action="" class="d-flex flex-column" method="">
+            <form action="login" class="d-flex flex-column" method="post" >
                 <div class="info ">
                     <label class="form-label" for="email"> Email </label>
                     <input class="form-control" id="email" name="email" placeholder="Lütfen email adresinizi giriniz"
@@ -28,6 +28,7 @@
                     <input class="form-control" id="password" name="password" placeholder="Lütfen şifrenizi giriniz"
                         type="password">
                 </div>
+                <div th:text="${result}" ></div>
 
                 <div class="info mybuttons col-12 d-flex  justify-content-around">
 
