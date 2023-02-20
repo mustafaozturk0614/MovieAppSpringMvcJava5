@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Document</title>
+    <link href="/static/app.css" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-md bg-body-secondary bg-gradient mb-4 ">
+        <div class="container d-flex ">
+            <a class="navbar-brand" href="#">Movie
+                App</a>
+
+
+            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="mycollapse collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="d-flex my-2 mx-5" role="">
+                    <input class="form-control me-2 mx-2 my-1" id="se" onkeyup="onChangenput()" placeholder="Search"
+                        type="text">
+                    <button class="btn btn-outline-success" type="button">Search</button>
+                </div>
+                <ul class="navbar-nav d-flex align-items-center ">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                            role="button">
+                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
+                                height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                        </a>
+
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#"> username</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <div class=" w-100 d-flex flex-column my-5 justify-content-between align-items-center">
+        <div class="container p-3 main content d-flex flex-row  justify-content-around align-item-center
+     bg-light">
+            <img class="col-3 " alt="...">
+            <div class="moviedetail d-flex flex-column col-8">
+                <h4>movie.name</h4>
+                <div>
+                    <span>Puan</span>
+                    <span>movie.rating+'/10'</span>
+                </div>
+                <div>
+                    <span>Etiketler</span>
+                    <span>
+                        movie.genres
+                    </span>
+                </div>
+                <div>
+                    <span>Ülke</span>
+                    <span>
+                        movie?.country
+                    </span>
+                </div>
+                <div>
+                    <span>Dil</span>
+                    <span>
+                        movie.language
+                    </span>
+                </div>
+                <div>
+                    <span>Tarih</span>
+                    <span>
+                        movie.premiered
+                    </span>
+                </div>
+
+
+                <div id="ItemButtons54158" class="item-buttons">
+
+                    <a type="button"><i style="font-size:2.2rem" class="fa-regular fa-heart"></i></a>
+                    <a type="button"> <i style="font-size: 2.2rem;color: red" class="fa-solid fa-heart"></i></a>
+                    <div class="addthis-wrapper">
+                        <div class="addthis_sharing_toolbox" data-url="https://www.frameby.com/movies/luca-2021"
+                            data-title="Luka (Luca) (2021)"
+                            data-description="Oyuncular: Jacob Tremblay, Jack Dylan Grazer, Emma Berman, Saverio Raimondo, Maya Rudolph | Yönetmen: Enrico Casarosa,  | Çıkış Tarihi: 03.09.2021"
+                            style="clear: both;">
+                            <div id="atstbx" class="at-share-tbx-element addthis-smartlayers addthis-animated at4-show"
+                                aria-labelledby="at-e5bc04fe-1dba-4e60-8c63-5202f7bde9d2" role="region"><span
+                                    id="at-e5bc04fe-1dba-4e60-8c63-5202f7bde9d2" class="at4-visually-hidden">AddThis
+                                    Sharing Buttons</span>
+                                <div class="at-share-btn-elements"><a role="button" tabindex="0"
+                                        class="at-icon-wrapper at-share-btn at-svc-facebook"
+                                        style="background-color: rgb(59, 89, 152); border-radius: 0%;"><span
+                                            class="at4-visually-hidden">Share to Facebook</span><span
+                                            class="at-icon-wrapper"
+                                            style="line-height: 32px; height: 32px; width: 32px;"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"
+                                                version="1.1" role="img" aria-labelledby="at-svg-facebook-1"
+                                                class="at-icon at-icon-facebook" style="width: 32px; height: 32px;">
+                                                <title id="at-svg-facebook-1">Facebook</title>
+                                                <g>
+                                                    <path
+                                                        d="M22 5.16c-.406-.054-1.806-.16-3.43-.16-3.4 0-5.733 1.825-5.733 5.17v2.882H9v3.913h3.837V27h4.604V16.965h3.823l.587-3.913h-4.41v-2.5c0-1.123.347-1.903 2.198-1.903H22V5.16z"
+                                                        fill-rule="evenodd"></path>
+                                                </g>
+                                            </svg></span></a><a role="button" tabindex="0"
+                                        class="at-icon-wrapper at-share-btn at-svc-twitter"
+                                        style="background-color: rgb(29, 161, 242); border-radius: 0%;"><span
+                                            class="at4-visually-hidden">Share to Twitter</span><span
+                                            class="at-icon-wrapper"
+                                            style="line-height: 32px; height: 32px; width: 32px;"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"
+                                                version="1.1" role="img" aria-labelledby="at-svg-twitter-2"
+                                                class="at-icon at-icon-twitter" style="width: 32px; height: 32px;">
+                                                <title id="at-svg-twitter-2">Twitter</title>
+                                                <g>
+                                                    <path
+                                                        d="M27.996 10.116c-.81.36-1.68.602-2.592.71a4.526 4.526 0 0 0 1.984-2.496 9.037 9.037 0 0 1-2.866 1.095 4.513 4.513 0 0 0-7.69 4.116 12.81 12.81 0 0 1-9.3-4.715 4.49 4.49 0 0 0-.612 2.27 4.51 4.51 0 0 0 2.008 3.755 4.495 4.495 0 0 1-2.044-.564v.057a4.515 4.515 0 0 0 3.62 4.425 4.52 4.52 0 0 1-2.04.077 4.517 4.517 0 0 0 4.217 3.134 9.055 9.055 0 0 1-5.604 1.93A9.18 9.18 0 0 1 6 23.85a12.773 12.773 0 0 0 6.918 2.027c8.3 0 12.84-6.876 12.84-12.84 0-.195-.005-.39-.014-.583a9.172 9.172 0 0 0 2.252-2.336"
+                                                        fill-rule="evenodd"></path>
+                                                </g>
+                                            </svg></span></a><a role="button" tabindex="0"
+                                        class="at-icon-wrapper at-share-btn at-svc-compact"
+                                        style="background-color: rgb(255, 101, 80); border-radius: 0%;"><span
+                                            class="at4-visually-hidden">Share to Diğer</span><span
+                                            class="at-icon-wrapper"
+                                            style="line-height: 32px; height: 32px; width: 32px;"><svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 32 32"
+                                                version="1.1" role="img" aria-labelledby="at-svg-addthis-3"
+                                                class="at-icon at-icon-addthis" style="width: 32px; height: 32px;">
+                                                <title id="at-svg-addthis-3">AddThis</title>
+                                                <g>
+                                                    <path d="M18 14V8h-4v6H8v4h6v6h4v-6h6v-4h-6z" fill-rule="evenodd">
+                                                    </path>
+                                                </g>
+                                            </svg></span></a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="other-buttons">
+                        <a class="synopsis-button" data-fancybox="" data-type="ajax"
+                            href="/ajax/show_synopsis_popup/luca-2021">Özet</a>
+                        <a class="trailer-button" data-type="ajax" href="/ajax/show_trailer_popup/luca-2021">Fragman</a>
+                        <a class="who-liked-it-button" data-fancybox="" data-type="ajax"
+                            href="/ajax/show_who_liked_it_popup/luca-2021">Beğenenler</a>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="container comment my-3  bg-light d-flex flex-column align-items-center w-100">
+            <div class="commentpost my-5 d-flex flex-column align-items-center  w-75">
+                <div class="row my-3 p-2 w-100">
+                    <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
+                        class=" mx-1 col-2 img-thumbnail rounded-start" alt="...">
+                    <textarea placeholder="Yorum paylaş" class="col-9 mx-1" style="resize: none" cols="7"
+                        rows="2"></textarea>
+                </div>
+
+                <button class="btn btn-primary w-25 align-self-end mb-2 mx-3">Paylaş</button>
+            </div>
+
+
+            <div class="card usercard d-flex flex-column  p-3 align-items-center w-75  my-2">
+                <div class="row d-flex container-fluid ">
+                    <div class="col-md-2 userimg">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="img-thumbnail rounded-start"
+                            alt="...">
+                    </div>
+                    <div class="col-md-10 text-center align-self-end ">
+                        <div class="card-body align-items-center">
+                            <h5 class="card-title">comment.user?.name</h5>
+                            <p class="card-text">comment.content</p>
+                            <p class="card-text"><small class="text-muted"> comment.date?.toString()</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script crossorigin="anonymous" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js">
+    </script>
+</body>
+
+</html>
