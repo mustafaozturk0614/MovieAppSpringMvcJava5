@@ -20,7 +20,7 @@
             <form action="login" class="d-flex flex-column" method="post" >
                 <div class="info ">
                     <label class="form-label" for="email"> Email </label>
-                    <input class="form-control" id="email" name="email" placeholder="Lütfen email adresinizi giriniz"
+                    <input class="form-control" th:value="${email}" id="email" name="email" placeholder="Lütfen email adresinizi giriniz"
                         type="email">
                 </div>
                 <div class="info ">
@@ -35,7 +35,7 @@
                     <button class="font-weight-bold   align-self-center btn btn-outline mt-3" type="submit"> Giriş
                         Yap
                     </button>
-                    <a class="font-weight-bold  btn btn-outline  mt-3  align-self-center" href="">Yeni kayıt</a>
+                    <a class="font-weight-bold  btn btn-outline  mt-3  align-self-center" href="/user/register">Yeni kayıt</a>
                 </div>
 
 

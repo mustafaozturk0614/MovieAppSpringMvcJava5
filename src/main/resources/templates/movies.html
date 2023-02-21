@@ -6,7 +6,7 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Document</title>
-    <link href="/static/app.css" rel="stylesheet">
+    <link href="/app.css" rel="stylesheet">
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" rel="stylesheet">
 
@@ -45,9 +45,9 @@
 
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> Username</a></li><!-- ty -->
+                            <li><a th:text="${user.name}" class="dropdown-item" href="#"> </a></li>
 
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a th:text="${user.userType}" class="dropdown-item" href="#"></a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
@@ -74,16 +74,11 @@
                     data-bs-parent="#accordionExample" id="collapseOne">
                     <div class="accordion-body ">
                         <form class="gnr">
-                            <div class="d-flex justify-content-between">
-                                <label>Drama</label>
-                                <input name="genre" type="checkbox">
-
+                            <div th:each="genre:${genres}"  class="d-flex justify-content-between">
+                                <label th:text="${genre.name}" ></label>
+                                <input th:value="${genre.name}"  name="genre" type="checkbox">
                             </div>
-                            <div class="d-flex justify-content-between">
-                                <label>Anime</label>
-                                <input name="genre" type="checkbox">
 
-                            </div>
                             <div class="mt-2 d-flex justify-content-end align-items-center">
                                 <button type="submit" class="btn btn-danger">Filtrele</button>
                                 </button>
@@ -133,45 +128,35 @@
         </div>
         <div class="col-9  allfilm  d-flex  flex-wrap justify-content-center ">
 
-            <div class="card my-2 mx-2" style="width: 20rem; ">
+            <div th:each="movie:${movies}" class="card my-2 mx-2" style="width: 20rem; ">
                 <a class="cm">
-                    <img class="card-img-top" alt="...">
+                    <img   th:src="${movie.image}" class="card-img-top" th:alt="${movie.name+'_image'}">
                     <div class="card-body sum d-flex flex-column">
-                        <h5 class="card-title">movie.name</h5>
-                        <p>movie.summary</p>
+                        <h5 th:text="${movie.name}"  class="card-title"></h5>
+                        <p  th:utext="${movie.summary}"></p>
                     </div>
-
                 </a>
-
-
-
-
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"> Language: movie.language</li>
-                    <li class="list-group-item">Rating: movie.rating</li>
-                    <li class="list-group-item">premiered: movie.premiered</li>
-                    <li class="list-group-item">Country: movie?.country</li>
+                    <li th:text="${'Language: '+movie.language}" class="list-group-item"></li>
+                    <li th:text="${'Rating: '+ movie.rating}" class="list-group-item"></li>
+                    <li th:text="${'Premiered: '+ movie.premiered}"  class="list-group-item"> </li>
+                    <li th:text="${'Country: '+ movie?.country}"  class="list-group-item"> </li>
                     <div class="d-flex justify-content-around my-2">
-
-                        <li class="list-group-item badge rounded-pill text-bg-primary">
-                            <span> Drama</span>
-
-                        </li>
-                        <li class="list-group-item badge rounded-pill text-bg-primary">
-                            <span> Anime</span>
-
+                        <li th:each="genre:${movie.genres}" class="list-group-item badge rounded-pill text-bg-primary">
+                            <span th:text="${genre.name}"></span>
                         </li>
                     </div>
-
-
 
                 </ul>
 
                 <div class="card-body2">
 
-                    <a href="" class="card-link">movie.url</a>
+                    <a th:href="${movie.url}" th:text="${movie.url}" class="card-link"></a>
                 </div>
             </div>
+
+
+
         </div>
 
     </div>

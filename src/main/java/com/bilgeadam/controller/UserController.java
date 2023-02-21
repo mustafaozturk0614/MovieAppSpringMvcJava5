@@ -7,7 +7,11 @@ package com.bilgeadam.controller;
 
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
+import com.bilgeadam.dto.response.LoginResponseDto;
 import com.bilgeadam.dto.response.UserRegisterResponseDto;
+import com.bilgeadam.repository.entity.Movie;
+import com.bilgeadam.service.GenreService;
+import com.bilgeadam.service.MovieService;
 import com.bilgeadam.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -16,11 +20,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-
+    private final GenreService genreService;
+    private final MovieService movieService;
 
 private  final UserService userService;
 
@@ -40,8 +47,9 @@ public ModelAndView register(UserRegisterRequestDto dto){
     try {
      userRegisterResponseDto=userService.register2(dto);
         System.out.println("dto==>"+userRegisterResponseDto);
+        modelAndView.addObject("email",userRegisterResponseDto.getEmail());  //1.yöntem
        modelAndView.setViewName("redirect:login");
-     //   return  getLoginPage();
+   //     return  getLoginPage(dto.getEmail());  //2.yöntem
     }catch (Exception e){
         error=e.getMessage();
         modelAndView.addObject("error",error);
@@ -53,24 +61,29 @@ public ModelAndView register(UserRegisterRequestDto dto){
 }
 
 
-@GetMapping("/login")
-    public ModelAndView getLoginPage(){
-
+   @GetMapping("/login")
+    public ModelAndView getLoginPage(String email){
     ModelAndView modelAndView=new ModelAndView();
+    modelAndView.addObject("email",email);
     modelAndView.setViewName("login");
-return modelAndView;
+        return modelAndView;
 }
     @PostMapping("/login")
     public ModelAndView login(LoginRequestDto dto){
         ModelAndView modelAndView=new ModelAndView();
         try {
-            userService.login(dto);
-            modelAndView.addObject("result","Giriþ Baþarýlý");
+         LoginResponseDto responseDto=userService.login(dto);
+            List<Movie> movieList=movieService.findAll();
+          //  modelAndView.addObject("result","Giriþ Baþarýlý");
+            modelAndView.addObject("genres",genreService.findAll());
+            modelAndView.addObject("user",responseDto);
+            modelAndView.addObject("movies",movieList);
+            modelAndView.setViewName("movies");
         }catch (Exception e){
             modelAndView.addObject("result",e.getMessage());
+            modelAndView.setViewName("login");
         }
 
-        modelAndView.setViewName("login");
         return modelAndView;
     }
 }

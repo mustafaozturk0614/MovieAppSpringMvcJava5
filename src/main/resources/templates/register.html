@@ -58,9 +58,8 @@
 
                             <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Kayıt Ol
                             </button>
-                            <a class="singintext d-block text-center mt-3">Giriş Yap</a>
-
-                            <div th:text="${error}"></div>
+                            <a  th:href="${'/user/login'}" class="singintext d-block text-center mt-3">Giriş Yap</a>
+                            <div class="alert-danger my-1 p-1 tex-center"  th:text="${error}"></div>
                             <hr class="my-4">
                             <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i
                                     class="fab fa-google mr-2"></i> Google ile Giriş Yap
