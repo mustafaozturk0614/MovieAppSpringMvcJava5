@@ -130,13 +130,23 @@
         <div class="col-9  allfilm  d-flex  flex-wrap justify-content-center ">
 
             <div th:each="movie:${movies}" class="card my-2 mx-2" style="width: 20rem; ">
-                <a class="cm">
+                <a th:if="${user.id!=null}" class="cm" th:href="${'/movie/findbyid?id='+movie.id+'&userId='+user.id}">
                     <img   th:src="${movie.image}" class="card-img-top" th:alt="${movie.name+'_image'}">
                     <div class="card-body sum d-flex flex-column">
                         <h5 th:text="${movie.name}"  class="card-title"></h5>
                         <p  th:utext="${movie.summary}"></p>
                     </div>
                 </a>
+
+                <a th:if="${user.id==null}" class="cm" th:href="${'/movie/findbyid?id='+movie.id}">
+
+                    <img   th:src="${movie.image}" class="card-img-top" th:alt="${movie.name+'_image'}">
+                    <div class="card-body sum d-flex flex-column">
+                        <h5 th:text="${movie.name}"  class="card-title"></h5>
+                        <p  th:utext="${movie.summary}"></p>
+                    </div>
+                </a>
+
                 <ul class="list-group list-group-flush">
                     <li th:text="${'Language: '+movie.language}" class="list-group-item"></li>
                     <li th:text="${'Rating: '+ movie.rating}" class="list-group-item"></li>

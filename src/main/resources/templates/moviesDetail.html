@@ -16,85 +16,87 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-body-secondary bg-gradient mb-4 ">
-        <div class="container d-flex ">
-            <a class="navbar-brand" href="#">Movie
-                App</a>
+<nav class="navbar navbar-expand-md bg-body-secondary bg-gradient mb-4 ">
+    <div class="container d-flex ">
+        <a class="navbar-brand" href="#">Movie
+            App</a>
 
 
-            <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
                 class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="mycollapse collapse navbar-collapse" id="navbarSupportedContent">
-                <div class="d-flex my-2 mx-5" role="">
-                    <input class="form-control me-2 mx-2 my-1" id="se" onkeyup="onChangenput()" placeholder="Search"
-                        type="text">
-                    <button class="btn btn-outline-success" type="button">Search</button>
-                </div>
-                <ul class="navbar-nav d-flex align-items-center ">
-                    <li class="nav-item">
-                        <a aria-current="page" class="nav-link active" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                            role="button">
-                            <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
-                                height="25" alt="Black and White Portrait of a Man" loading="lazy" />
-                        </a>
-
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#"> username</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-
-                </ul>
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="mycollapse collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="d-flex my-2 mx-5" role="">
+                <input class="form-control me-2 mx-2 my-1" id="se" onkeyup="onChangenput()" placeholder="Search"
+                       type="text">
+                <button class="btn btn-outline-success" type="button">Search</button>
             </div>
+            <ul class="navbar-nav d-flex align-items-center ">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li  th:if="${user.id!=null}"  class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       role="button">
+                        <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
+                             height="25" alt="Black and White Portrait of a Man" loading="lazy" />
+                    </a>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a th:text="${user?.name}" class="dropdown-item" href="#"> </a></li>
 
+                        <li><a th:text="${user?.userType}" class="dropdown-item" href="#"></a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <a th:href="${'/user/login'}"  class="btn btn-danger" >Logout</a>
+                    </ul>
+                </li>
+                <a th:if="${user.id==null}" th:href="${'/user/login'}"  class="btn btn-success mx-3" >Login</a>
+
+            </ul>
         </div>
-    </nav>
+
+    </div>
+</nav>
 
     <div class=" w-100 d-flex flex-column my-5 justify-content-between align-items-center">
         <div class="container p-3 main content d-flex flex-row  justify-content-around align-item-center
      bg-light">
-            <img class="col-3 " alt="...">
+            <img th:src="${movie.image}" class="col-3 " alt="...">
             <div class="moviedetail d-flex flex-column col-8">
-                <h4>movie.name</h4>
+                <h4 th:text="${movie.name}" ></h4>
                 <div>
                     <span>Puan</span>
-                    <span>movie.rating+'/10'</span>
+                    <span th:text="${movie.rating+'/10'}" ></span>
                 </div>
                 <div>
                     <span>Etiketler</span>
-                    <span>
-                        movie.genres
+                    <span th:text="${movie.genres}">
+
                     </span>
                 </div>
                 <div>
-                    <span>Ülke</span>
-                    <span>
-                        movie?.country
+                    <span >Ülke</span>
+                    <span th:text="${movie?.country}">
+
                     </span>
                 </div>
                 <div>
                     <span>Dil</span>
-                    <span>
-                        movie.language
+                    <span th:text="${movie.language}">
+
                     </span>
                 </div>
                 <div>
                     <span>Tarih</span>
-                    <span>
-                        movie.premiered
+                    <span th:text="${movie.premiered}" >
+
                     </span>
                 </div>
 
@@ -176,19 +178,21 @@
 
         </div>
         <div class="container comment my-3  bg-light d-flex flex-column align-items-center w-100">
-            <div class="commentpost my-5 d-flex flex-column align-items-center  w-75">
+            <form method="post" action="/moviecommnet/save"   class="commentpost my-5 d-flex flex-column align-items-center  w-75">
                 <div class="row my-3 p-2 w-100">
                     <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
                         class=" mx-1 col-2 img-thumbnail rounded-start" alt="...">
-                    <textarea placeholder="Yorum paylaş" class="col-9 mx-1" style="resize: none" cols="7"
+                    <textarea name="content" placeholder="Yorum paylaş" class="col-9 mx-1" style="resize: none" cols="7"
                         rows="2"></textarea>
+                    <input hidden="hidden" name="userId" th:value="${user.id}">
+                    <input hidden="hidden" name="movieId" th:value="${movie.id}">
                 </div>
 
-                <button class="btn btn-primary w-25 align-self-end mb-2 mx-3">Paylaş</button>
-            </div>
+                <button type="submit" class="btn btn-primary w-25 align-self-end mb-2 mx-3">Paylaş</button>
+            </form>
 
 
-            <div class="card usercard d-flex flex-column  p-3 align-items-center w-75  my-2">
+            <div th:each="comment:${movie.comments}" class="card usercard d-flex flex-column  p-3 align-items-center w-75  my-2">
                 <div class="row d-flex container-fluid ">
                     <div class="col-md-2 userimg">
                         <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="img-thumbnail rounded-start"
@@ -196,9 +200,9 @@
                     </div>
                     <div class="col-md-10 text-center align-self-end ">
                         <div class="card-body align-items-center">
-                            <h5 class="card-title">comment.user?.name</h5>
-                            <p class="card-text">comment.content</p>
-                            <p class="card-text"><small class="text-muted"> comment.date?.toString()</small></p>
+                            <h5 th:text="${comment.user?.name}" class="card-title"></h5>
+                            <p  th:text="${comment.content}" class="card-text"></p>
+                            <p  th:text="${comment.date?.toString()}" class="card-text"><small class="text-muted"> </small></p>
                         </div>
                     </div>
                 </div>
