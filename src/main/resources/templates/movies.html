@@ -36,13 +36,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li  th:if="${user.id!=null}"  class="nav-item dropdown">
                         <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                             role="button">
                             <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle"
                                 height="25" alt="Black and White Portrait of a Man" loading="lazy" />
                         </a>
-
                         </a>
                         <ul class="dropdown-menu">
                             <li><a th:text="${user.name}" class="dropdown-item" href="#"> </a></li>
@@ -52,8 +51,10 @@
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            <a th:href="${'/user/login'}"  class="btn btn-danger" >Logout</a>
                         </ul>
                     </li>
+                    <a th:if="${user.id==null}" th:href="${'/user/login'}"  class="btn btn-success mx-3" >Login</a>
 
                 </ul>
             </div>

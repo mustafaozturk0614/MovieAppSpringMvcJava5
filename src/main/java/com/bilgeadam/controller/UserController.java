@@ -29,6 +29,8 @@ public class UserController {
     private final GenreService genreService;
     private final MovieService movieService;
 
+    private final  MovieController movieController;
+
 private  final UserService userService;
 
 @GetMapping("/register")
@@ -73,12 +75,10 @@ public ModelAndView register(UserRegisterRequestDto dto){
         ModelAndView modelAndView=new ModelAndView();
         try {
          LoginResponseDto responseDto=userService.login(dto);
-            List<Movie> movieList=movieService.findAll();
-          //  modelAndView.addObject("result","Giriþ Baþarýlý");
-            modelAndView.addObject("genres",genreService.findAll());
-            modelAndView.addObject("user",responseDto);
-            modelAndView.addObject("movies",movieList);
-            modelAndView.setViewName("movies");
+            //  modelAndView.addObject("result","Giriþ Baþarýlý");
+//            modelAndView.addObject("id",responseDto.getId());//1.yontem
+//            modelAndView.setViewName("redirect:/movie");
+       return   movieController.getMoviePage(responseDto);//2.yontem
         }catch (Exception e){
             modelAndView.addObject("result",e.getMessage());
             modelAndView.setViewName("login");
