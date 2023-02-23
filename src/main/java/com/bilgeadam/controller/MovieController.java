@@ -45,7 +45,6 @@ public class MovieController {
         }else{
             user =userService.findById(userId).get();
         }
-
         Movie movie=movieService.findbyId(id);
         ModelAndView modelAndView=new ModelAndView();
         modelAndView.addObject("movie",movie);

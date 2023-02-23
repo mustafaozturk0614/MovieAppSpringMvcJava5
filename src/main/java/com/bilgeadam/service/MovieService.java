@@ -6,6 +6,7 @@ import com.bilgeadam.repository.entity.Genre;
 import com.bilgeadam.repository.entity.Movie;
 import com.bilgeadam.repository.entity.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 public class MovieService {
 
     private final IMovieRepository movieRepository;
-
+    @Lazy
     private final UserService userService;
 
 
@@ -36,7 +37,7 @@ public class MovieService {
         if (movie.isPresent()) {
             return movie.get();
         } else {
-            throw new RuntimeException("KLullanıcı bulunamadı");
+            throw new RuntimeException("Film bulunamadı");
         }
     }
 

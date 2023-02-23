@@ -1,6 +1,7 @@
 package com.bilgeadam.service;
 
 
+import com.bilgeadam.dto.request.AddFavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
@@ -8,9 +9,11 @@ import com.bilgeadam.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.dto.response.UserRegisterResponseDto;
 import com.bilgeadam.mapper.IUserMapper;
 import com.bilgeadam.repository.IUserRepository;
+import com.bilgeadam.repository.entity.Movie;
 import com.bilgeadam.repository.entity.User;
 import com.bilgeadam.repository.entity.UserType;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,10 +21,16 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class UserService {
 
-    private final IUserRepository userRepository;
+    private  IUserRepository userRepository;
+
+    private  MovieService movieService;
+
+    public UserService(IUserRepository userRepository, @Lazy MovieService movieService) {
+        this.userRepository = userRepository;
+        this.movieService = movieService;
+    }
 
     public User createUser(String name, String surname, String email, String phone, String password, String userType) {
         UserType userType1=null;
@@ -192,6 +201,23 @@ public class UserService {
           }else{
               throw new RuntimeException("kullanıcı adı veya şifre hatalı");
           }
+
+
+    }
+
+    public void addFavMovies(AddFavMoviesRequestDto dto) {
+        Optional<User> user=userRepository.findById(dto.getUserId());
+        Movie movie=movieService.findbyId(dto.getMovieId());
+        if (user.isPresent()){
+            if (!user.get().getFavMovies().contains(movie)){
+                user.get().getFavMovies().add(movie);
+                userRepository.save(user.get());
+            }
+        }else {
+            throw new RuntimeException("Kullanıcı bulunamadı");
+        }
+
+
 
 
     }

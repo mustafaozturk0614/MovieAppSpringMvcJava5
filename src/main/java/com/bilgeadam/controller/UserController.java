@@ -5,6 +5,7 @@ package com.bilgeadam.controller;
 
  */
 
+import com.bilgeadam.dto.request.AddFavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
@@ -84,6 +85,16 @@ public ModelAndView register(UserRegisterRequestDto dto){
             modelAndView.setViewName("login");
         }
 
+        return modelAndView;
+    }
+
+    @GetMapping("/addfavmovies")
+    public  ModelAndView  addFavMovies(AddFavMoviesRequestDto dto){
+        ModelAndView modelAndView=new ModelAndView();
+        userService.addFavMovies(dto);
+        modelAndView.addObject("id",dto.getMovieId());
+        modelAndView.addObject("userId",dto.getUserId());
+        modelAndView.setViewName("redirect:/movie/findbyid");
         return modelAndView;
     }
 }

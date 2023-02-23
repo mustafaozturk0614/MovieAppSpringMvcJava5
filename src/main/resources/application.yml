@@ -9,6 +9,10 @@ spring:
     password: root
 #    hikari:
 #      auto-commit: false
+
+  main:
+    allow-circular-references: false
+
   jpa:
     hibernate:
       ddl-auto: update
