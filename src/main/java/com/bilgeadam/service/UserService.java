@@ -1,7 +1,7 @@
 package com.bilgeadam.service;
 
 
-import com.bilgeadam.dto.request.AddFavMoviesRequestDto;
+import com.bilgeadam.dto.request.FavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
@@ -12,7 +12,6 @@ import com.bilgeadam.repository.IUserRepository;
 import com.bilgeadam.repository.entity.Movie;
 import com.bilgeadam.repository.entity.User;
 import com.bilgeadam.repository.entity.UserType;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
@@ -205,7 +204,7 @@ public class UserService {
 
     }
 
-    public void addFavMovies(AddFavMoviesRequestDto dto) {
+    public void addFavMovies(FavMoviesRequestDto dto) {
         Optional<User> user=userRepository.findById(dto.getUserId());
         Movie movie=movieService.findbyId(dto.getMovieId());
         if (user.isPresent()){
@@ -216,9 +215,18 @@ public class UserService {
         }else {
             throw new RuntimeException("Kullanıcı bulunamadı");
         }
+    }
 
-
-
-
+    public void removeFavMovies(FavMoviesRequestDto dto) {
+        Optional<User> user=userRepository.findById(dto.getUserId());
+        Movie movie=movieService.findbyId(dto.getMovieId());
+        if (user.isPresent()){
+            if (user.get().getFavMovies().contains(movie)){
+                user.get().getFavMovies().remove(movie);
+                userRepository.save(user.get());
+            }
+        }else {
+            throw new RuntimeException("Kullanıcı bulunamadı");
+        }
     }
 }

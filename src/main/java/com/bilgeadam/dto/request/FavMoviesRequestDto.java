@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AddFavMoviesRequestDto {
+public class FavMoviesRequestDto {
     private Long movieId;
     private Long userId;
 

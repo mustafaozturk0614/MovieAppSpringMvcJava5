@@ -5,12 +5,11 @@ package com.bilgeadam.controller;
 
  */
 
-import com.bilgeadam.dto.request.AddFavMoviesRequestDto;
+import com.bilgeadam.dto.request.FavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
 import com.bilgeadam.dto.response.UserRegisterResponseDto;
-import com.bilgeadam.repository.entity.Movie;
 import com.bilgeadam.service.GenreService;
 import com.bilgeadam.service.MovieService;
 import com.bilgeadam.service.UserService;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/user")
@@ -89,12 +86,26 @@ public ModelAndView register(UserRegisterRequestDto dto){
     }
 
     @GetMapping("/addfavmovies")
-    public  ModelAndView  addFavMovies(AddFavMoviesRequestDto dto){
+    public  ModelAndView  addFavMovies(FavMoviesRequestDto dto){
         ModelAndView modelAndView=new ModelAndView();
         userService.addFavMovies(dto);
         modelAndView.addObject("id",dto.getMovieId());
         modelAndView.addObject("userId",dto.getUserId());
         modelAndView.setViewName("redirect:/movie/findbyid");
+        // modelAndView.setViewName("redirect:/movie/findbyid?id="+dto.getMovieId()+"&userId="+dto.getUserId());
+
+        return modelAndView;
+    }
+
+    @GetMapping("/removefavmovies")
+    public  ModelAndView  removeFavMovies(FavMoviesRequestDto dto){
+        ModelAndView modelAndView=new ModelAndView();
+        userService.removeFavMovies(dto);
+        modelAndView.addObject("id",dto.getMovieId());
+        modelAndView.addObject("userId",dto.getUserId());
+        modelAndView.setViewName("redirect:/movie/findbyid");
+        // modelAndView.setViewName("redirect:/movie/findbyid?id="+dto.getMovieId()+"&userId="+dto.getUserId());
+
         return modelAndView;
     }
 }

@@ -107,9 +107,9 @@
                 <div id="ItemButtons54158" class="item-buttons">
 
 
-                    <div class="other-buttons">
+                    <div th:if="${user.favMovies!=null}" class="other-buttons">
                         <a th:href="${'/user/addfavmovies?movieId='+movie.id+'&userId='+user.id}"  th:if="${!user.favMovies.contains(movie)}" type="button"><i style="font-size:2.2rem" class="fa-regular fa-heart"></i></a>
-                        <a th:if="${user.favMovies.contains(movie)}" type="button"> <i style="font-size: 2.2rem;color: red" class="fa-solid fa-heart"></i></a>
+                        <a th:href="${'/user/removefavmovies?movieId='+movie.id+'&userId='+user.id}"  th:if="${user.favMovies.contains(movie)}" type="button"> <i style="font-size: 2.2rem;color: red" class="fa-solid fa-heart"></i></a>
                     </div>
 
                 </div>
