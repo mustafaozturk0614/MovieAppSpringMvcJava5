@@ -9,7 +9,10 @@ import com.bilgeadam.dto.request.FavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
+import com.bilgeadam.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.dto.response.UserRegisterResponseDto;
+import com.bilgeadam.repository.entity.User;
+import com.bilgeadam.repository.entity.UserType;
 import com.bilgeadam.service.GenreService;
 import com.bilgeadam.service.MovieService;
 import com.bilgeadam.service.UserService;
@@ -19,6 +22,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -68,21 +74,40 @@ public ModelAndView register(UserRegisterRequestDto dto){
     modelAndView.setViewName("login");
         return modelAndView;
 }
+
+
     @PostMapping("/login")
     public ModelAndView login(LoginRequestDto dto){
+
         ModelAndView modelAndView=new ModelAndView();
         try {
          LoginResponseDto responseDto=userService.login(dto);
+
+         if (responseDto.getUserType().equals(UserType.ADMIN)){
+                 return  adminPage();
+         }
             //  modelAndView.addObject("result","Giriþ Baþarýlý");
 //            modelAndView.addObject("id",responseDto.getId());//1.yontem
 //            modelAndView.setViewName("redirect:/movie");
        return   movieController.getMoviePage(responseDto);//2.yontem
         }catch (Exception e){
+            e.printStackTrace();
             modelAndView.addObject("result",e.getMessage());
             modelAndView.setViewName("login");
         }
 
         return modelAndView;
+    }
+    @PostMapping("/admin")
+    private ModelAndView adminPage() {
+        ModelAndView modelAndView=new ModelAndView();
+        List<UserFindAllResponseDto> users=
+                userService.findAll().stream()
+                        .filter(x->!x.getUserType().equals(UserType.ADMIN)).collect(Collectors.toList());
+        modelAndView.addObject("users",users);
+        modelAndView.setViewName("admin");
+    return modelAndView;
+
     }
 
     @GetMapping("/addfavmovies")

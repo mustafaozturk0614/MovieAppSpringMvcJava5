@@ -64,9 +64,6 @@ public class UserService {
 
     public List<UserFindAllResponseDto> findAll() {
 
-
-
-
       return userRepository.findAll().stream().map(x->{
              return UserFindAllResponseDto.builder()
                      .id(x.getId())
@@ -79,8 +76,6 @@ public class UserService {
                      .genres(x.getFavGenres())
                      .movieCommentsContent(x.getComments().stream()
                              .map(y->y.getContent()).collect(Collectors.toList()))
-                     .commentMap(x.getComments().stream()
-                             .collect(Collectors.toMap(z->z.getMovie().getName(),t->t.getContent())))
                      .build();
          }).collect(Collectors.toList());
     }
