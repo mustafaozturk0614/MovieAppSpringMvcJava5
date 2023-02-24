@@ -96,5 +96,8 @@ public class MovieService {
         return movieRepository.searchByCountry();
   }
 
+  public  List<Movie> findAllByGenres_NameIn(String [] genre){
+        return movieRepository.findAllByGenres_NameIn(genre);
+  }
 
 }

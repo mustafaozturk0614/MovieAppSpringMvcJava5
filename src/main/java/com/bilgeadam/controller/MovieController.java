@@ -25,10 +25,14 @@ public class MovieController {
     private final UserService userService;
 
     @GetMapping("")
-    public ModelAndView getMoviePage( LoginResponseDto responseDto){
+    public ModelAndView getMoviePage(LoginResponseDto responseDto,String [] genre){
         ModelAndView modelAndView=new ModelAndView();
-        System.out.println("response==>"+responseDto);
-        List<Movie> movieList=movieService.findAll();
+        List<Movie> movieList;
+        if (genre==null){
+            movieList=movieService.findAll();
+        }else{
+            movieList=movieService.findAllByGenres_NameIn(genre);
+        }
         modelAndView.addObject("genres",genreService.findAll());
         modelAndView.addObject("user",responseDto);
         modelAndView.addObject("movies",movieList);

@@ -74,19 +74,16 @@
                 <div aria-labelledby="headingOne" class="accordion-collapse collapse show"
                     data-bs-parent="#accordionExample" id="collapseOne">
                     <div class="accordion-body ">
-                        <form class="gnr">
+                        <form class="gnr" action="/movie" method="get" >
                             <div th:each="genre:${genres}"  class="d-flex justify-content-between">
                                 <label th:text="${genre.name}" ></label>
                                 <input th:value="${genre.name}"  name="genre" type="checkbox">
                             </div>
-
                             <div class="mt-2 d-flex justify-content-end align-items-center">
                                 <button type="submit" class="btn btn-danger">Filtrele</button>
                                 </button>
                             </div>
                         </form>
-
-
                     </div>
 
 

@@ -58,9 +58,9 @@
                     <a href="#" class="list-group-item list-group-item-action  py-2 ripple"><i
                             class="fas fa-chart-bar fa-fw me-3"></i><span>Comments</span></a>
 
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="#" onclick="usertable()" class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-users  me-3"></i><span>Users</span></a>
-                    <a href="#" class="list-group-item list-group-item-action py-2 ripple"><i
+                    <a href="#" onclick="movietable()"  class="list-group-item list-group-item-action py-2 ripple"><i
                             class="fas fa-film  me-3"></i><span>Movies</span></a>
                 </div>
 
@@ -114,21 +114,17 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th class="text-center">movie.id</th>
-                                <td class="text-center">movie.name</td>
-                                <td class="text-center"></td>
-                                <td class="text-center"></td>
-
+                            <tr th:each="movie:${movies}">
+                                <th th:text="${movie.id}"  class="text-center"></th>
+                                <td th:text="${movie.name}" class="text-center"></td>
+                                <td th:text="${movie.premiered}" class="text-center"></td>
+                                <td th:text="${movie.language}" class="text-center"></td>
                                 <td class="text-center">
                                     <div class="d-flex justify-content-center">
                                         <a class="btn btn-success mx-1"><i class="fa-solid fa-pen-to-square"></i></a>
                                         <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-
-
                                     </div>
                                 </td>
-
                             </tr>
 
                         </tbody>
@@ -173,8 +169,6 @@
                     mtable.classList.remove("d-none")
                     utable.classList.add("d-none")
                 }
-
-
             }
         </script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

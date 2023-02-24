@@ -39,6 +39,9 @@ public interface IMovieRepository extends JpaRepository<Movie,Long> {
     @Query("select  m.country,  count (m.country) from Movie  as m group by  m.country")
     Object [] searchByCountry();
 
+    List<Movie> findAllByGenres_NameIn(String [] genre);
+
+
 
 
 }

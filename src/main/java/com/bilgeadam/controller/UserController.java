@@ -1,16 +1,14 @@
 package com.bilgeadam.controller;
-/*
-   1-Mvc yapýsýnda register metotlarýmýzý yazalým
 
-
- */
 
 import com.bilgeadam.dto.request.FavMoviesRequestDto;
 import com.bilgeadam.dto.request.LoginRequestDto;
 import com.bilgeadam.dto.request.UserRegisterRequestDto;
 import com.bilgeadam.dto.response.LoginResponseDto;
+import com.bilgeadam.dto.response.MovieAdminPageResponseDto;
 import com.bilgeadam.dto.response.UserFindAllResponseDto;
 import com.bilgeadam.dto.response.UserRegisterResponseDto;
+import com.bilgeadam.mapper.IMovieMapper;
 import com.bilgeadam.repository.entity.User;
 import com.bilgeadam.repository.entity.UserType;
 import com.bilgeadam.service.GenreService;
@@ -53,9 +51,9 @@ public ModelAndView register(UserRegisterRequestDto dto){
     try {
      userRegisterResponseDto=userService.register2(dto);
         System.out.println("dto==>"+userRegisterResponseDto);
-        modelAndView.addObject("email",userRegisterResponseDto.getEmail());  //1.yöntem
+        modelAndView.addObject("email",userRegisterResponseDto.getEmail());  //1.yÃ¶ntem
        modelAndView.setViewName("redirect:login");
-   //     return  getLoginPage(dto.getEmail());  //2.yöntem
+   //     return  getLoginPage(dto.getEmail());  //2.yÃ¶ntem
     }catch (Exception e){
         error=e.getMessage();
         modelAndView.addObject("error",error);
@@ -86,10 +84,10 @@ public ModelAndView register(UserRegisterRequestDto dto){
          if (responseDto.getUserType().equals(UserType.ADMIN)){
                  return  adminPage();
          }
-            //  modelAndView.addObject("result","Giriþ Baþarýlý");
+            //  modelAndView.addObject("result","GiriÅŸ BaÅŸarÄ±lÄ±");
 //            modelAndView.addObject("id",responseDto.getId());//1.yontem
 //            modelAndView.setViewName("redirect:/movie");
-       return   movieController.getMoviePage(responseDto);//2.yontem
+       return   movieController.getMoviePage(responseDto,null);//2.yontem
         }catch (Exception e){
             e.printStackTrace();
             modelAndView.addObject("result",e.getMessage());
@@ -105,6 +103,9 @@ public ModelAndView register(UserRegisterRequestDto dto){
                 userService.findAll().stream()
                         .filter(x->!x.getUserType().equals(UserType.ADMIN)).collect(Collectors.toList());
         modelAndView.addObject("users",users);
+        List<MovieAdminPageResponseDto> movies=IMovieMapper.
+                INSTANCE.toMovieAdminPageResponseDto(movieService.findAll());
+        modelAndView.addObject("movies", movies);
         modelAndView.setViewName("admin");
     return modelAndView;
 
