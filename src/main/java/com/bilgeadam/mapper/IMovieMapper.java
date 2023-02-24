@@ -12,8 +12,6 @@ import java.util.List;
 public interface IMovieMapper {
 
     IMovieMapper INSTANCE= Mappers.getMapper(IMovieMapper.class);
-
    List< MovieAdminPageResponseDto> toMovieAdminPageResponseDto(final List<Movie> movies);
-
 
 }
