@@ -4,5 +4,17 @@
     <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/controller/UserController.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/service/MovieService.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/service/UserService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Country.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/DvdCountry.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Externals.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Image.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Network.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Previousepisode.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Rating.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Sample.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Schedule.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/Self.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/WebChannel.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/com/bilgeadam/utility/data/_links.java" charset="UTF-8" />
   </component>
 </project>

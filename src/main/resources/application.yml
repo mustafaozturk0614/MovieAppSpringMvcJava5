@@ -4,12 +4,20 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/movieAppDb
+    url: jdbc:postgresql://10.4.0.11:5432/movieAppDb
     username: postgres
     password: root
-#    hikari:
-#      auto-commit: false
-
+    hikari:
+      auto-commit: false
+#  datasource:
+#    url: jdbc:h2:mem:mydb
+#    username: sa
+#    password: 123
+#    driverClassName: org.h2.Driver
+#    jpa:
+#      spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
+#  h2:
+#    console.enabled: true
   main:
     allow-circular-references: false
 
